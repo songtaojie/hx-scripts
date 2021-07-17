@@ -1,20 +1,21 @@
+#!/bin/bash
+
 curpwd=$(pwd)
-cd /home/songtaojie/git/blog-identity-server
+cd /home/songtaojie/git/blog-server
+git pull
+cd /home/songtaojie/git/blog-admin
+git pull
+cd /home/songtaojie/git/blog-client
 git pull
 cd $curpwd
 
 source ./.env
 # docker login --username=$DOCKER_REGISTRY_USERNAME --password=$DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY
-docker login --username=$DOCKER_REGISTRY_USERNAME  $DOCKER_REGISTRY
+docker login --username=$DOCKER_REGISTRY_USERNAME $DOCKER_REGISTRY
 
-
-declare -a list=()
 declare -A dict=(
     ["5002"]="hx.identityserver.api"
-  )
- 
-declare -A dictgroup=(
-    ["0"]="0"
+    ["5003"]="hx.blog.api"
   )
 
 echo -e "\033[33m all services: \033[0m"
@@ -46,7 +47,7 @@ if [ $len -le 0 ]
 fi
 
 #显示用户要处理的数据列表
-echo -e "\033[33m you will be dealing with following services with Version $VERSION_NUMBER: \033[0m"
+echo -e "\033[33m you will be dealing with following services with Version latest: \033[0m"
 
 for item in ${list[@]}
   do
@@ -56,12 +57,8 @@ for item in ${list[@]}
     else
       echo "$item --> ${dict[$item]}"
     fi
-  done 
-
-echo "1 Build Services"
-echo "5 Up Services"
-
-
+  done
+  
 #编译服务
 function build(){
     echo -e -n "\033[33m please confirm whether to start processing,y=>yes? \033[0m"
@@ -74,15 +71,9 @@ function build(){
             then 
                 continue
             else
-            if [[ -z ${dictgroup[$port]} ]]
-            then
-                docker-compose up --build -d --force-recreate ${dict[$port]}
-            else
-                docker-compose -f docker-compose.${dictgroup[$port]}.yaml up --build -d --force-recreate ${dict[$port]}
-            fi
+            docker-compose up --build -d --force-recreate ${dict[$port]}
             fi
         done
-        docker system prune -f
         echo -e "\033[32m build finished, good luck \033[0m"
     else
     echo -e "\033[31m you canceled operation \033[0m" 
@@ -101,12 +92,7 @@ function up(){
             then 
                 continue
             else
-            if [[ -z ${dictgroup[$port]} ]]
-            then
-                docker-compose up  -d  ${dict[$port]}
-            else
-                docker-compose -f docker-compose.${dictgroup[$port]}.yml up -d  ${dict[$port]}
-            fi
+            docker-compose up  -d  ${dict[$port]}
             fi
         done
         echo -e "\033[32m up finished, good luck \033[0m"
@@ -115,6 +101,10 @@ function up(){
     fi
 }
 
+
+echo "1 Build Services"
+echo "5 Up Services"
+
 while :
 do
   read INPUT_STRING
@@ -122,11 +112,11 @@ do
 	1)
 	    build
 		break 
-		;; 							
+		;;
 	5)
 	    up
 		break 
-		;; 													
+		;;
 	*)
 		echo "Invalid input."
 		;;

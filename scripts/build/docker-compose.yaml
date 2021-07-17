@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  hx.blog.api:
+    container_name: hx.blog.api
+    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/hx.blog.api
+    build:
+      context: /home/songtaojie/git/blog-server
+      dockerfile: src/HxCore.Web/Dockerfile
+    environment:
+      - ConnectionStrings__MySqlConnectionString=Server=${DB_NAME_OR_IP};Port=${DB_PORT};Database=hxcoreblog;User ID=${DB_UID};Password=${DB_PWD};CharSet=utf8
+      - ConnectionStrings__IdsConnectionString=Data Source=localhost;Database=hxidentityserver;User ID=root;Password=song123;CharSet=utf8
+    ports:
+      - 5003:5003
+    dns:
+      - ${DNS_PROVIDER1}
+      - ${DNS_PROVIDER2}
+
+services:
+  hx.identityserver.api:
+    container_name: hx.identityserver.api
+    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/hx.identityserver.api
+    build:
+      context: /home/songtaojie/git/hx-identity-server
+      dockerfile: src/Hx.IdentityServer/Dockerfile
+    environment:
+      - ConnectionStrings__DbType=sqlserver
+      - ConnectionStrings__DefaultConnection=Server=host.docker.internal;Database=HxIdentityServer;User ID=sa;Password=song123;MultipleActiveResultSets=True
+    ports:
+      - 5002:5002
+    dns:
+      - ${DNS_PROVIDER1}
+      - ${DNS_PROVIDER2}
