@@ -16,7 +16,6 @@ services:
       - ${DNS_PROVIDER1}
       - ${DNS_PROVIDER2}
 
-services:
   hx.identityserver.api:
     container_name: hx.identityserver.api
     image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/hx.identityserver.api
