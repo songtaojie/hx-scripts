@@ -5,7 +5,7 @@ services:
     container_name: hx.blog.api
     image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/hx.blog.api
     build:
-      context: /home/songtaojie/blog-server
+      context: /home/songtaojie/git/blog-server
       dockerfile: src/HxCore.Web/Dockerfile
     environment:
       - ConnectionStrings__MySqlConnectionString=Server=${DB_NAME_OR_IP};Port=${DB_PORT};Database=hxcoreblog;User ID=${DB_UID};Password=${DB_PWD};CharSet=utf8
