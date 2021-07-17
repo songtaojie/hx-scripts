@@ -2,7 +2,12 @@
 curpwd=$(pwd)
 git pull
 
-declare -a sysdict=( ["0"]="build" ["1"]="pull" ["2"]="push" ["3"]="nginx" )
+declare -A sysdict=(
+    ["0"]="build"
+    ["1"]="pull"
+		["2"]="push"
+		["3"]="nginx"
+  )
 
 echo -e "\033[33m all support system: \033[0m"
 for key in $(echo ${!sysdict[*]})
