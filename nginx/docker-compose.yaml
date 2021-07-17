@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  hx.proxy.nginx:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - /var/lib/nginx
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8000:8000'
+      - '8001:8001'
+    dns:
+      - 8.8.8.8
+      - 114.114.114.114
