@@ -3,7 +3,7 @@
 curpwd=$(pwd)
 cd /home/songtaojie/git/blog-server
 git pull
-cd /home/songtaojie/git/blog-identity-server
+cd /home/songtaojie/git/hx-identity-server
 git pull
 cd /home/songtaojie/git/blog-admin
 git pull
