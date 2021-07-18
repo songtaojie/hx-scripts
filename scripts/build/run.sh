@@ -13,7 +13,7 @@ cd $curpwd
 
 source ./.env
 # docker login --username=$DOCKER_REGISTRY_USERNAME --password=$DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY
-docker login --username=$DOCKER_REGISTRY_USERNAME $DOCKER_REGISTRY
+# docker login --username=$DOCKER_REGISTRY_USERNAME $DOCKER_REGISTRY
 
 declare -A dict=(
     ["5002"]="hx.identityserver.api"
