@@ -8,8 +8,8 @@ services:
       context: /home/songtaojie/git/blog-server
       dockerfile: src/HxCore.Web/Dockerfile
     environment:
-      - ConnectionStrings__MySqlConnectionString=Server=${DB_NAME_OR_IP};Port=${DB_PORT};Database=hxcoreblog;User ID=${DB_UID};Password=${DB_PWD};CharSet=utf8;sslMode=None
-      - ConnectionStrings__IdsConnectionString=Server=${DB_NAME_OR_IP};Port=${DB_PORT};Database=hxidentityserver;User ID=${DB_UID};Password=${DB_PWD};CharSet=utf8;sslMode=None
+      - ConnectionStrings__MySqlConnectionString=Server=${DB_SERVER};Port=${DB_PORT};Database=hxcoreblog;User ID=${DB_UID};Password=${DB_PWD};CharSet=utf8;sslMode=None
+      - ConnectionStrings__IdsConnectionString=Server=${DB_SERVER};Port=${DB_PORT};Database=hxidentityserver;User ID=${DB_UID};Password=${DB_PWD};CharSet=utf8;sslMode=None
       - Startup__ApiName=Hx.Core.Blog
     ports:
       - 5003:5003
@@ -25,7 +25,7 @@ services:
       dockerfile: src/Hx.IdentityServer/Dockerfile
     environment:
       - ConnectionStrings__DbType=mysql
-      - ConnectionStrings__DefaultConnection=Server=${DB_NAME_OR_IP};Port=${DB_PORT};Database=hxidentityserver;User ID=${DB_UID};Password=${DB_PWD};CharSet=utf8;sslMode=None
+      - ConnectionStrings__DefaultConnection=Server=${DB_SERVER};Port=${DB_PORT};Database=hxidentityserver;User ID=${DB_UID};Password=${DB_PWD};CharSet=utf8;sslMode=None
     ports:
       - 5002:5002
     dns:
