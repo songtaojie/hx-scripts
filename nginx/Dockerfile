@@ -5,4 +5,4 @@ COPY certfile/server.key /etc/nginx/ssl/server.key
 COPY configs/blog /etc/nginx/conf.d/
 # COPY configs/identity /etc/nginx/conf.d/
 
-# RUN rm /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/conf.d/default.conf
