@@ -10,7 +10,7 @@ services:
     environment:
       - ConnectionStrings__MySqlConnectionString=Server=${DB_SERVER};Port=${DB_PORT};Database=hxcoreblog;Uid=${DB_UID};Pwd=${DB_PWD};CharSet=utf8
       - ConnectionStrings__IdsConnectionString=Server=${DB_SERVER};Port=${DB_PORT};Database=hxidentityserver;Uid=${DB_UID};Pwd=${DB_PWD};CharSet=utf8
-      - CorsAccessorSettings__WithOrigins=["http://192.168.233.128:8000/", "http://192.168.233.128"]
+      - CorsAccessorSettings__WithOrigins=["http://192.168.233.128:8000/", "http://192.168.233.128","http://192.168.233.128:8000"]
       - Startup__ApiName=Hx.Core.Blog
     ports:
       - 5003:5003
