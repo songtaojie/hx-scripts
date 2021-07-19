@@ -6,7 +6,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     volumes:
-      - /var/lib/nginx
+      - /home/songtaojie/git/:/home/songtaojie/git/
     ports:
       - '80:80'
       - '443:443'
