@@ -6,7 +6,7 @@ services:
       context: ./
       dockerfile: Dockerfile
     volumes:
-      - /var/lib/nginx
+      - /root/home/songtaojie/:/root/home/songtaojie/
     ports:
       - '80:80'
       - '443:443'
