@@ -2,13 +2,13 @@ curpwd=$(pwd)
 git pull
 cd /home/songtaojie/git/blog-admin
 git pull
-cd /root/guobah5/guoba/blog-client
+cd /home/songtaojie/git/blog-client
 git pull
 cd $curpwd
 
 source ./.env
 # docker login --username=$DOCKER_REGISTRY_USERNAME --password=$DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY
-docker login --username=$DOCKER_REGISTRY_USERNAME $DOCKER_REGISTRY
+# docker login --username=$DOCKER_REGISTRY_USERNAME $DOCKER_REGISTRY
 
 # echo "1 Build Services"
 # echo -e "10 Push Images to aliyun- \e[33mWarning\e[0m:this operation will replace the docker images on Ali Docker Images of Prod."
