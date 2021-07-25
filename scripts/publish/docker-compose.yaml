@@ -26,7 +26,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - Logging__LogLevel__Default=${DEFAULTLOGLEVEL}
       - ConnectionStrings__DbType=mysql
-      - ConnectionStrings__DefaultConnection=Server=${DB_NAME_OR_IP};Port=${DB_PORT};Database=hxidentityserver;User ID=${DB_UID};Password=${DB_PWD};CharSet=utf8
+      - ConnectionStrings__DefaultConnection=Server=${DB_SERVER};Port=${DB_PORT};Database=hxidentityserver;User ID=${DB_UID};Password=${DB_PWD};CharSet=utf8
     ports:
       - 5002:5002
     dns:
