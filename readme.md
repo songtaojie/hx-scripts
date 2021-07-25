@@ -23,3 +23,9 @@
 - **3.  打开终端定位到发布脚本根目录，执行sh run.sh命令，选择命令0构建镜像，然后按步骤选择进行执行**
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0725/112726_b885c0d9_2229723.png "屏幕截图.png")
 
+## 构建nginx镜像容器
+如果服务器上未安装nginx，可以通过构建nginx容器来使用nginx服务
+修改相应的nginx配置，和正常的nginx配置一样，修改构建镜像的卷的地址为自己的地址
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0725/135025_01b39cfb_2229723.png "屏幕截图.png")
+运行步骤和构建项目一样，选择nginx构建的编号，如下图
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0725/134616_2f609997_2229723.png "屏幕截图.png")
