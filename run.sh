@@ -6,6 +6,7 @@ declare -A sysdict=(
     ["0"]="build"
     ["1"]="publish"
 		["2"]="nginx"
+		["3"]="jenkins"
   )
 
 echo -e "\033[33m all support system: \033[0m"
@@ -29,6 +30,11 @@ case $MYSYS in
 	;;
 2) #Nginx
 	cd nginx
+	docker-compose up -d --build 
+	break
+	;;
+3) #jenkins
+	cd jenkins
 	docker-compose up -d --build 
 	break
 	;;
