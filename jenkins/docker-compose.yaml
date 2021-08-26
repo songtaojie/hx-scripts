@@ -1,22 +1,18 @@
-version: '2'
+version: '3.7'
 
 services:
   hx-jenkins-core:
-    # image: yahuiwong/jenkins-dotnet-core:2.1
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    # environment:
-    #   - JAVA_OPTS=-Dorg.apache.commons.jelly.tags.fmt.timeZone=Asia/Shanghai
+    container_name: jenkins
+    image: jenkinsci/blueocean
     ports:
-      - 8080:8080
-      - 50000:50000
-    # uncomment for docker in docker
-    # privileged: true
-    # restart: always
+      - '8080:8080'
+      - '50000:50000'
+    restart: always
+    user: root
     volumes:
-      # enable persistent volume (warning: make sure that the local jenkins_home folder is created)
-      - ./jenkins_home:/home/songtaojie/jenkins_home
-      # mount docker sock and binary for docker in docker (only works on linux)
-      # - /var/run/docker.sock:/var/run/docker.sock
-      # - /usr/bin/docker:/usr/bin/docker
+      - '/var/jenkins_home:/home/songtaojie/jenkins_home'
+      - '/usr/bin/docker:/usr/bin/docker'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/usr/local/bin/docker-compose:/usr/local/bin/docker-compose'
+    environment:
+      - TZ=Asia/Shanghai
