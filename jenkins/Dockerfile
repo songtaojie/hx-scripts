@@ -13,6 +13,7 @@ RUN apt-get install -y curl libunwind8 gettext apt-transport-https
 
 # Based on instructions at https://www.microsoft.com/net/download/linux-package-manager/debian9/sdk-current
 # Install microsoft.qpg
+RUN sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
 RUN mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/dotnetdev.list'
@@ -20,7 +21,7 @@ RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft
 # Install the .NET Core framework
 RUN apt-get update
 RUN apt-get install -y dotnet-sdk-3.1
-RUN apt-get install -y dotnet-sdk-5.0
+# RUN apt-get install -y dotnet-sdk-5.0
 
 # Switch back to the jenkins user.
 USER jenkins
