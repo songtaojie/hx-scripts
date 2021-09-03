@@ -3,12 +3,10 @@ version: '3.7'
 services:
   hx.proxy.nginx:
     container_name: hx.proxy.nginx
-    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/hx.proxy.nginx
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/hx.proxy.nginx
     volumes:
-      - /var/local/:/home/songtaojie/git/
+      - /home/songtaojie/git/blog-admin:/var/local/blog-admin
+      - /home/songtaojie/git/blog-client:/var/local/blog-client
     ports:
       - '80:80'
       - '443:443'
