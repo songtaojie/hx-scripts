@@ -6,7 +6,7 @@ cluster.name: 'docker-cluster'
 node.name: 'docker-node1'
 network.host: 0.0.0.0
 # elasticsearch节点信息
-cluster.initial_master_nodes: ['docker-node1']
+# cluster.initial_master_nodes: ['docker-node1']
 # 下面的配置是跨域验证（可以不开启）
 http.cors.enabled: true
 http.cors.allow-origin: '*'

@@ -2,6 +2,8 @@ version: '3.7'
 
 services:
   elasticsearch:
+    container_name: elasticsearch
+    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/elasticsearch:${ELK_VERSION}
     build:
       context: elasticsearch/
       args:
@@ -9,9 +11,9 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
-        delay: 5s
+        #delay: 5s
         max_attempts: 3
-        window: 120s
+        #window: 120s
     #restart: always
     volumes:
       - type: bind
@@ -36,6 +38,8 @@ services:
       - elk
 
   logstash:
+    container_name: logstash
+    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/logstash:${ELK_VERSION}
     build:
       context: logstash/
       args:
@@ -61,6 +65,8 @@ services:
       - elasticsearch
 
   kibana:
+    container_name: kibana
+    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/kibana:${ELK_VERSION}
     build:
       context: kibana/
       args:
