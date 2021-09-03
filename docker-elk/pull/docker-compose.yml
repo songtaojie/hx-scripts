@@ -1,0 +1,80 @@
+version: '3.7'
+
+services:
+  elasticsearch:
+    container_name: elasticsearch
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/elasticsearch
+    deploy:
+      restart_policy:
+        condition: on-failure
+        #delay: 5s
+        max_attempts: 3
+        #window: 120s
+    #restart: always
+    volumes:
+      - type: bind
+        source: ../DockerConfig/elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - type: volume
+        source: esdata
+        target: /usr/share/elasticsearch/data
+        #volume:
+        #  nocopy: true
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+    environment:
+      ES_JAVA_OPTS: '-Xmx256m -Xms256m'
+      #ELASTIC_PASSWORD: changeme
+      # Use single node discovery in order to disable production mode and avoid bootstrap checks
+      # see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+      discovery.type: single-node
+    networks:
+      - elk
+
+  logstash:
+    container_name: logstash
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/logstash
+    volumes:
+      - type: bind
+        source: ../DockerConfig/logstash/config/logstash.yml
+        target: /usr/share/logstash/config/logstash.yml
+        read_only: true
+      - type: bind
+        source: ../DockerConfig/logstash/pipeline
+        target: /usr/share/logstash/pipeline
+        read_only: true
+    ports:
+      - '5000:5000/tcp'
+      - '5000:5000/udp'
+      - '9600:9600'
+    environment:
+      LS_JAVA_OPTS: '-Xmx256m -Xms256m'
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    container_name: kibana
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/kibana
+    volumes:
+      - type: bind
+        source: ../DockerConfig/kibana/config/kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+        read_only: true
+    ports:
+      - '5601:5601'
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+networks:
+  elk:
+    driver: bridge
+
+volumes:
+  esdata:
+    driver: local

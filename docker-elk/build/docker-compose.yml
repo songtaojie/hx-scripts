@@ -3,9 +3,9 @@ version: '3.7'
 services:
   elasticsearch:
     container_name: elasticsearch
-    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/elasticsearch:${ELK_VERSION}
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/elasticsearch
     build:
-      context: elasticsearch/
+      context: ../DockerConfig/elasticsearch/
       args:
         ELK_VERSION: $ELK_VERSION
     deploy:
@@ -17,7 +17,7 @@ services:
     #restart: always
     volumes:
       - type: bind
-        source: ./elasticsearch/config/elasticsearch.yml
+        source: ../DockerConfig/elasticsearch/config/elasticsearch.yml
         target: /usr/share/elasticsearch/config/elasticsearch.yml
         read_only: true
       - type: volume
@@ -39,18 +39,18 @@ services:
 
   logstash:
     container_name: logstash
-    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/logstash:${ELK_VERSION}
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/logstash
     build:
-      context: logstash/
+      context: ../DockerConfig/logstash/
       args:
         ELK_VERSION: $ELK_VERSION
     volumes:
       - type: bind
-        source: ./logstash/config/logstash.yml
+        source: ../DockerConfig/logstash/config/logstash.yml
         target: /usr/share/logstash/config/logstash.yml
         read_only: true
       - type: bind
-        source: ./logstash/pipeline
+        source: ../DockerConfig/logstash/pipeline
         target: /usr/share/logstash/pipeline
         read_only: true
     ports:
@@ -66,14 +66,14 @@ services:
 
   kibana:
     container_name: kibana
-    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/kibana:${ELK_VERSION}
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/kibana
     build:
-      context: kibana/
+      context: ../DockerConfig/kibana/
       args:
         ELK_VERSION: $ELK_VERSION
     volumes:
       - type: bind
-        source: ./kibana/config/kibana.yml
+        source: ../DockerConfig/kibana/config/kibana.yml
         target: /usr/share/kibana/config/kibana.yml
         read_only: true
     ports:
