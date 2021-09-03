@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  hx-jenkins-core:
+    container_name: jenkins
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/jenkins
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        #window: 120s
+    #restart: always
+    ports:
+      - '8080:8080'
+      - '50000:50000'
+    user: root
+    volumes:
+      - '/var/jenkins_home:/home/songtaojie/jenkins_home'
+      - '/usr/bin/docker:/usr/bin/docker'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/usr/local/bin/docker-compose:/usr/local/bin/docker-compose'
+    environment:
+      - TZ=Asia/Shanghai
