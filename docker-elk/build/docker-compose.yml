@@ -3,7 +3,7 @@ version: '3.7'
 services:
   elasticsearch:
     container_name: elasticsearch
-    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/elasticsearch
+    image: $DOCKER_REGISTRY/$DOCKER_REGISTRY_NAMESPACE/elasticsearch
     build:
       context: ../DockerConfig/elasticsearch/
       args:
@@ -39,7 +39,7 @@ services:
 
   logstash:
     container_name: logstash
-    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/logstash
+    image: $DOCKER_REGISTRY/$DOCKER_REGISTRY_NAMESPACE/logstash
     build:
       context: ../DockerConfig/logstash/
       args:
@@ -66,7 +66,7 @@ services:
 
   kibana:
     container_name: kibana
-    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/kibana
+    image: $DOCKER_REGISTRY/$DOCKER_REGISTRY_NAMESPACE/kibana
     build:
       context: ../DockerConfig/kibana/
       args:
