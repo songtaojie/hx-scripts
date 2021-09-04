@@ -28,7 +28,6 @@ services:
     ports:
       - '9200:9200'
       - '9300:9300'
-    env_file: ../.env
     environment:
       ES_JAVA_OPTS: '-Xmx256m -Xms256m'
       #ELASTIC_PASSWORD: changeme
@@ -62,7 +61,6 @@ services:
       LS_JAVA_OPTS: '-Xmx256m -Xms256m'
     networks:
       - elk
-    env_file: ../.env
     depends_on:
       - elasticsearch
 
@@ -82,7 +80,6 @@ services:
       - '5601:5601'
     networks:
       - elk
-    env_file: ../.env
     depends_on:
       - elasticsearch
 
