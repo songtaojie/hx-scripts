@@ -4,9 +4,10 @@ git pull
 
 declare -A sysdict=(
     ["0"]="build"
-    ["1"]="pull"
-		["2"]="push"
-		["3"]="nginx"
+    ["1"]="publish"
+		["2"]="nginx"
+		["3"]="jenkins"
+		["4"]="elk"
   )
 
 echo -e "\033[33m all support system: \033[0m"
@@ -23,19 +24,24 @@ case $MYSYS in
 	sh run.sh
 	break 
 	;; 													
-1) #拉去镜像
-	cd scripts/pull
+1) #发布镜像
+	cd scripts/publish
 	sh run.sh
 	break
 	;;
 2) #Nginx
-	cd scripts/push
-	sh push.sh
+	cd nginx
+	sh run.sh
 	break
 	;;
-3) #Nginx
-	cd nginx
-	docker-compose up -d --build 
+3) #jenkins
+	cd jenkins
+	sh run.sh
+	break
+	;;
+3) #elk
+	cd docker-elk
+	sh run.sh
 	break
 	;;
 *)

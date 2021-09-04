@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  hx.blog.api:
+    container_name: hx.blog.api
+    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/hx.blog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - Logging__LogLevel__Default=${DEFAULTLOGLEVEL}
+      - ConnectionStrings__MySqlConnectionString=Server=${DB_SERVER};Port=${DB_PORT};Database=hxcoreblog;Uid=${DB_UID};Pwd=${DB_PWD};CharSet=utf8
+      - ConnectionStrings__IdsConnectionString=Server=${DB_SERVER};Port=${DB_PORT};Database=hxidentityserver;Uid=${DB_UID};Pwd=${DB_PWD};CharSet=utf8
+      - RedisCache__Configuration=${REDIS_SERVER}:${REDIS_PORT},password=${REDIS_PASSWORD},defaultDatabase=${REDIS_DEFAULTDATABASE}
+      - RedisCache__InstanceName=${REDIS_INSTANCE}
+      - CorsAccessorSettings__WithOrigins__0=http://${LOCAL_SERVICE_IP}:8000/
+      - CorsAccessorSettings__WithOrigins__1=http://${LOCAL_SERVICE_IP}
+      - CorsAccessorSettings__WithOrigins__2=http://${LOCAL_SERVICE_IP}:8000
+    ports:
+      - 5003:5003
+    dns:
+      - ${DNS_PROVIDER1}
+      - ${DNS_PROVIDER2}
+  hx.identityserver.api:
+    container_name: hx.identityserver.api
+    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/hx.identityserver.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - Logging__LogLevel__Default=${DEFAULTLOGLEVEL}
+      - ConnectionStrings__DbType=mysql
+      - ConnectionStrings__DefaultConnection=Server=${DB_SERVER};Port=${DB_PORT};Database=hxidentityserver;User ID=${DB_UID};Password=${DB_PWD};CharSet=utf8
+    ports:
+      - 5002:5002
+    dns:
+      - ${DNS_PROVIDER1}
+      - ${DNS_PROVIDER2}
