@@ -3,7 +3,7 @@ version: '3.7'
 services:
   hx.blog.api:
     container_name: hx.blog.api
-    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/hx.blog.api
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/hx.blog.api
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - Logging__LogLevel__Default=${DEFAULTLOGLEVEL}
@@ -21,7 +21,7 @@ services:
       - ${DNS_PROVIDER2}
   hx.identityserver.api:
     container_name: hx.identityserver.api
-    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/hx.identityserver.api
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/hx.identityserver.api
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - Logging__LogLevel__Default=${DEFAULTLOGLEVEL}

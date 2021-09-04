@@ -1,5 +1,5 @@
 #!/bin/bash
-source ../.env
+source ./.env
 
 docker tag  ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/jenkins:latest $DOCKER_REGISTRY/${DOCKER_REGISTRY_NAMESPACE}/jenkins:${JENKINS_VERSION}
             

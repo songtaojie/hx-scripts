@@ -3,7 +3,7 @@ version: '3.7'
 services:
   hx.blog.api:
     container_name: hx.blog.api
-    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/hx.blog.api
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/hx.blog.api
     build:
       context: /home/songtaojie/git/blog-server
       dockerfile: src/HxCore.Web/Dockerfile
@@ -25,7 +25,7 @@ services:
 
   hx.identityserver.api:
     container_name: hx.identityserver.api
-    image: registry.cn-hangzhou.aliyuncs.com/songtaojie_centos/hx.identityserver.api
+    image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/hx.identityserver.api
     build:
       context: /home/songtaojie/git/hx-identity-server
       dockerfile: src/Hx.IdentityServer/Dockerfile

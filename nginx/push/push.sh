@@ -1,5 +1,5 @@
 #!/bin/bash
-source ../.env
+source ./.env
 
 docker tag  ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/hx.proxy.nginx:latest $DOCKER_REGISTRY/${DOCKER_REGISTRY_NAMESPACE}/hx.proxy.nginx:${NGINX_VERSION}
             
