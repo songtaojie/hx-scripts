@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./.env
+source ../.env
 
 declare -a list=()
 declare -A dict=(

@@ -73,7 +73,7 @@ function build(){
             then 
                 continue
             else
-            docker-compose up --build -d --force-recreate ${dict[$port]}
+            docker-compose --env-file ../.env  up --build -d --force-recreate ${dict[$port]}
             fi
         done
         echo -e "\033[32m build finished, good luck \033[0m"
@@ -94,7 +94,7 @@ function up(){
             then 
                 continue
             else
-            docker-compose up  -d  ${dict[$port]}
+            docker-compose --env-file ../.env  up  -d  ${dict[$port]}
             fi
         done
         echo -e "\033[32m up finished, good luck \033[0m"
