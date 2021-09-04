@@ -90,3 +90,4 @@ networks:
 volumes:
   esdata:
     driver: local
+env_file: ../.env
