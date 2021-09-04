@@ -1,5 +1,5 @@
 #!/bin/bash
 
-source ./.env
-echo "å¼€å§‹æ„å»ºELKï¼Œç‰ˆæœ¬å·ï¼š$ELK_VERSION"
-docker-compose up --build -d --force-recreate
+source ../.env
+echo "¿ªÊ¼¹¹½¨ELK£¬°æ±¾ºÅ£º$ELK_VERSION"
+docker-compose --env-file ../.env  up --build  -d --force-recreate

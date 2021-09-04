@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./.env
+source ../.env
 
 #定义服务
 declare -A dict=(
