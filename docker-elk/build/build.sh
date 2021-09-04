@@ -1,5 +1,4 @@
 #!/bin/bash
 
-source ../.env
-
-docker-compose up --build -d --force-recreate --env-file ../.env
+# source ../.env
+docker-compose --env-file ../.env  up --build  -d --force-recreate
