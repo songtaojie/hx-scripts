@@ -11,7 +11,7 @@ cd /home/songtaojie/git/blog-client
 git pull
 cd $curpwd
 
-source ./.env
+source ../.env
 # docker login --username=$DOCKER_REGISTRY_USERNAME --password=$DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY
 # docker login --username=$DOCKER_REGISTRY_USERNAME $DOCKER_REGISTRY
 
