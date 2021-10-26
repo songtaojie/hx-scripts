@@ -21,7 +21,7 @@ services:
       - ConsulSettings__Address=http://${LOCAL_SERVICE_IP}:8500
       - ConsulSettings__AgentService__Address=${LOCAL_SERVICE_IP}
       - ConsulSettings__AgentService__Port=5003
-      - ConsulSettings__AgentService__Check__HTTP=http://${LOCAL_SERVICE_IP}:5003/api/HealthCheck
+      - ConsulSettings__AgentCheck__HTTP=http://${LOCAL_SERVICE_IP}:5003/api/HealthCheck
     ports:
       - 5003:5003
     dns:
@@ -41,7 +41,7 @@ services:
       - ConsulSettings__Address=http://${LOCAL_SERVICE_IP}:8500
       - ConsulSettings__AgentService__Address=${LOCAL_SERVICE_IP}
       - ConsulSettings__AgentService__Port=5002
-      - ConsulSettings__AgentService__Check__HTTP=http://${LOCAL_SERVICE_IP}:5002/api/HealthCheck
+      - ConsulSettings__AgentCheck__HTTP=http://${LOCAL_SERVICE_IP}:5002/api/HealthCheck
     ports:
       - 5002:5002
     dns:
