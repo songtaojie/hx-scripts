@@ -1,0 +1,74 @@
+# 可参考： https://hub.docker.com/_/mysql
+version: '3.7'
+services:
+  mysql-master:
+    image: mysql:${MYSQL_VERSION} # 原镜像`mysql:8.0`
+    container_name: mysql-master # 容器名
+     deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    #restart: always # 指定容器退出后的重启策略为始终重启
+    command: --default-authentication-plugin=mysql_native_password #修改默认用户加密规则
+    volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
+      - './master/my.cnf:/etc/mysql/my.cnf'
+      - './master/data:/var/lib/mysql'
+      - './master/conf.d:/etc/mysql/conf.d'
+      - './master/mysql-files:/var/lib/mysql-files'
+    environment: # 设置环境变量,相当于docker run命令中的-e
+      TZ: Asia/Shanghai
+      LANG: en_US.UTF-8
+      MYSQL_ROOT_PASSWORD: song123 # 设置root用户密码
+    #  MYSQL_DATABASE: demo              # 初始化的数据库名称
+    ports: # 映射端口
+      - '3307:3306'
+
+  mysql-slave:
+    image: mysql:${MYSQL_VERSION} # 原镜像`mysql:8.0`
+    container_name: mysql-slave-1 # 容器名
+     deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    #restart: always # 指定容器退出后的重启策略为始终重启
+    command: --default-authentication-plugin=mysql_native_password #修改默认用户加密规则
+    volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
+      - './slave1/my.cnf:/etc/mysql/my.cnf'
+      - './slave1/data:/var/lib/mysql'
+      - './slave1/conf.d:/etc/mysql/conf.d'
+      - './slave1/mysql-files:/var/lib/mysql-files'
+    environment: # 设置环境变量,相当于docker run命令中的-e
+      TZ: Asia/Shanghai
+      LANG: en_US.UTF-8
+      MYSQL_ROOT_PASSWORD: song123 # 设置root用户密码
+    #  MYSQL_DATABASE: demo              # 初始化的数据库名称
+    ports: # 映射端口
+      - '3308:3306'
+
+  mysql-slave-2:
+    image: mysql:${MYSQL_VERSION} # 原镜像`mysql:8.0`
+    container_name: mysql-slave-2 # 容器名
+     deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    #restart: always # 指定容器退出后的重启策略为始终重启
+    command: --default-authentication-plugin=mysql_native_password #修改默认用户加密规则
+    volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
+      - './slave2/my.cnf:/etc/mysql/my.cnf'
+      - './slave2/data:/var/lib/mysql'
+      - './slave2/conf.d:/etc/mysql/conf.d'
+      - './slave2/mysql-files:/var/lib/mysql-files'
+    environment: # 设置环境变量,相当于docker run命令中的-e
+      TZ: Asia/Shanghai
+      LANG: en_US.UTF-8
+      MYSQL_ROOT_PASSWORD: song123 # 设置root用户密码
+    #  MYSQL_DATABASE: demo              # 初始化的数据库名称
+    ports: # 映射端口
+      - '3309:3306'

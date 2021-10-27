@@ -1,0 +1,27 @@
+# 可参考： https://hub.docker.com/_/mysql
+# 挂载数据卷，格式是 - localPath:containerPath  本地目录:容器目录
+version: '3.7'
+services:
+  mysql:
+    image: mysql:${MYSQL_VERSION} # 原镜像`mysql:8.0`
+    container_name: mysql${MYSQL_VERSION} # 容器名为'mysql8.0'
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    #restart: always # 指定容器退出后的重启策略为始终重启
+    command: --default-authentication-plugin=mysql_native_password #修改默认用户加密规则
+    volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
+      - './my.cnf:/etc/mysql/my.cnf'
+      - './data:/var/lib/mysql'
+      - './conf.d:/etc/mysql/conf.d'
+      - './mysql-files:/var/lib/mysql-files'
+    environment: # 设置环境变量,相当于docker run命令中的-e
+      TZ: Asia/Shanghai
+      LANG: en_US.UTF-8
+      MYSQL_ROOT_PASSWORD: song123 # 设置root用户密码
+    #  MYSQL_DATABASE: demo              # 初始化的数据库名称
+    ports: # 映射端口
+      - '3306:3306'
