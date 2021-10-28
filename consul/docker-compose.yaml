@@ -5,14 +5,26 @@ services:
     image: consul:${CONSUL_VERSION}
     container_name: consul-1
     restart: always
-    command: agent -server -bind=0.0.0.0 -client=0.0.0.0 -bootstrap-expect=3 -node=consul-1 -datacenter=dc1 -ui
+    command: agent -server -bind=0.0.0.0 -client=0.0.0.0 -node=consul_server_1  -datacenter=dc1 -ui
+    environment:
+      - CONSUL_BOOTSTRAP_EXPECT=3
+    volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
+      - './data/server1:/consul/data'
+      - './config/server1:/consul/config'
+    ports:
+      - 8500:8500
     networks:
       - mynet
   consul2:
     image: consul:${CONSUL_VERSION}
     container_name: consul-2
     restart: always
-    command: agent -server -bind=0.0.0.0 -client=0.0.0.0 -retry-join=consul-1 -node=consul-2 -datacenter=dc1 -ui
+    command: agent -server -bind=0.0.0.0 -client=0.0.0.0 -retry-join=consul-1 -node=consul_server_2  -datacenter=dc1 -ui
+    environment:
+      - CONSUL_BOOTSTRAP_EXPECT=3
+    volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
+      - '/usr/consul/data/server2:/consul/data'
+      - '/usr/consul/config/server2:/consul/config'
     depends_on:
       - consul1
     ports:
@@ -23,20 +35,30 @@ services:
     image: consul:${CONSUL_VERSION}
     container_name: consul-3
     restart: always
-    command: agent -server -bind=0.0.0.0 -client=0.0.0.0 -retry-join=consul-1 -node=consul-3 -datacenter=dc1 -ui
+    command: agent -server -bind=0.0.0.0 -client=0.0.0.0 -retry-join=consul-1 -node=consul_server_3 -datacenter=dc1 -ui
+    environment:
+      - CONSUL_BOOTSTRAP_EXPECT=3
+    volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
+      - '/usr/consul/data/server3:/consul/data'
+      - '/usr/consul/config/server3:/consul/config'
     depends_on:
       - consul1
     ports:
-      - 8501:8500
+      - 8502:8500
     networks:
       - mynet
   consul4:
     image: consul:${CONSUL_VERSION}
     container_name: consul-4
     restart: always
-    command: agent -retry-join=consul-1 -node=ndoe4 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1 -ui
+    command: agent -retry-join=consul-1 -node=consul_client_1 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1 -ui
+    environment:
+      - CONSUL_BOOTSTRAP_EXPECT=3
+    volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
+      - '/usr/consul/data/client1:/consul/data'
+      - '/usr/consul/config/client1:/consul/config'
     ports:
-      - 8501:8500
+      - 8503:8500
     depends_on:
       - consul2
       - consul3
