@@ -9,8 +9,8 @@ services:
     environment:
       - CONSUL_BOOTSTRAP_EXPECT=3
     volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
-      - './data/server1:/consul/data'
-      - './config/server1:/consul/config'
+      - '/usr/consul/data/server1:/consul/data'
+      - '/usr/consul/config/server1:/consul/config'
     ports:
       - 8500:8500
     networks:
@@ -20,8 +20,8 @@ services:
     container_name: consul-2
     restart: always
     command: agent -server -bind=0.0.0.0 -client=0.0.0.0 -retry-join=consul-1 -node=consul_server_2  -datacenter=dc1 -ui
-    environment:
-      - CONSUL_BOOTSTRAP_EXPECT=3
+    # environment:
+    #   - CONSUL_BOOTSTRAP_EXPECT=3
     volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
       - '/usr/consul/data/server2:/consul/data'
       - '/usr/consul/config/server2:/consul/config'
@@ -36,8 +36,8 @@ services:
     container_name: consul-3
     restart: always
     command: agent -server -bind=0.0.0.0 -client=0.0.0.0 -retry-join=consul-1 -node=consul_server_3 -datacenter=dc1 -ui
-    environment:
-      - CONSUL_BOOTSTRAP_EXPECT=3
+    # environment:
+    #   - CONSUL_BOOTSTRAP_EXPECT=3
     volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
       - '/usr/consul/data/server3:/consul/data'
       - '/usr/consul/config/server3:/consul/config'
@@ -52,8 +52,8 @@ services:
     container_name: consul-4
     restart: always
     command: agent -retry-join=consul-1 -node=consul_client_1 -bind=0.0.0.0 -client=0.0.0.0 -datacenter=dc1 -ui
-    environment:
-      - CONSUL_BOOTSTRAP_EXPECT=3
+    # environment:
+    #   - CONSUL_BOOTSTRAP_EXPECT=3
     volumes: # 数据卷挂载路径设置,将本机目录映射到容器目录
       - '/usr/consul/data/client1:/consul/data'
       - '/usr/consul/config/client1:/consul/config'
