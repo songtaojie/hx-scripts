@@ -1,6 +1,6 @@
 #!/bin/bash
-# source ../.env
-source ../.env.local
+source ../.env
+# source ../.env.local
 
 curpwd=$(pwd)
 cd ${STORAGE_PATH}/hx-scripts
