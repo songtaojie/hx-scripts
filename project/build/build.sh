@@ -1,4 +1,6 @@
 #!/bin/bash
+source ../.env
+source ../.local.env
 
 curpwd=$(pwd)
 cd ${STORAGE_PATH}/hx-scripts
@@ -13,8 +15,6 @@ git pull
 # git pull
 cd $curpwd
 
-source ../.env
-source ../.local.env
 # docker login --username=$DOCKER_REGISTRY_USERNAME --password=$DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY
 # docker login --username=$DOCKER_REGISTRY_USERNAME $DOCKER_REGISTRY
 
