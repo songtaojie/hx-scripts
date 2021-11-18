@@ -1,8 +1,8 @@
 version: '3.7'
 
 services:
-  data.redis.6379:
-    container_name: data-redis-6379
+  redis.6379:
+    container_name: redis-6379
     build:
       context: ./6379/
       dockerfile: Dockerfile
