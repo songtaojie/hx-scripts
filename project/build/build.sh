@@ -1,14 +1,14 @@
 #!/bin/bash
 
 curpwd=$(pwd)
-cd /home/songtaojie/git/blog-server
+cd /root/git/blog-server
 git pull
-cd /home/songtaojie/git/hx-identity-server
+cd /root/git/hx-identity-server
 git pull
-cd /home/songtaojie/git/blog-admin
+cd /root/git/blog-admin
 git pull
-cd /home/songtaojie/git/blog-client
-git pull
+# cd /home/songtaojie/git/blog-client
+# git pull
 cd $curpwd
 
 source ../.env
