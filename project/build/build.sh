@@ -9,7 +9,7 @@ cd ${STORAGE_PATH}/hx-identity-server
 git pull
 cd ${STORAGE_PATH}/blog-admin
 git pull
-# cd /home/songtaojie/git/blog-client
+# cd ${STORAGE_PATH}/blog-client
 # git pull
 cd $curpwd
 
