@@ -1,13 +1,13 @@
 #!/bin/bash
 
 curpwd=$(pwd)
-cd /root/git/hx-scripts
+cd ${STORAGE_PATH}/hx-scripts
 git pull
-cd /root/git/blog-server
+cd ${STORAGE_PATH}/blog-server
 git pull
-cd /root/git/hx-identity-server
+cd ${STORAGE_PATH}/hx-identity-server
 git pull
-cd /root/git/blog-admin
+cd ${STORAGE_PATH}/blog-admin
 git pull
 # cd /home/songtaojie/git/blog-client
 # git pull

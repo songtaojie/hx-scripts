@@ -5,7 +5,7 @@ services:
     container_name: hx.blog.api
     image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/hx.blog.api
     build:
-      context: /home/songtaojie/git/blog-server
+      context: ${STORAGE_PATH}/blog-server
       dockerfile: src/HxCore.Web/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
@@ -32,7 +32,7 @@ services:
     container_name: hx.identityserver.api
     image: ${DOCKER_REGISTRY}/${DOCKER_REGISTRY_NAMESPACE}/hx.identityserver.api
     build:
-      context: /home/songtaojie/git/hx-identity-server
+      context: ${STORAGE_PATH}/hx-identity-server
       dockerfile: src/Hx.IdentityServer/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
