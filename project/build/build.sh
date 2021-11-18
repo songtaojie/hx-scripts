@@ -1,6 +1,8 @@
 #!/bin/bash
 
 curpwd=$(pwd)
+cd /root/git/hx-scripts
+git pull
 cd /root/git/blog-server
 git pull
 cd /root/git/hx-identity-server
