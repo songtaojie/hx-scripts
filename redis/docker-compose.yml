@@ -6,13 +6,13 @@ services:
     build:
       context: ./6379/
       dockerfile: Dockerfile
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
-    # restart: always
+    # deploy:
+    #   restart_policy:
+    #     condition: on-failure
+    #     delay: 5s
+    #     max_attempts: 3
+    #     window: 120s
+    restart: always
     sysctls:
       net.core.somaxconn: 1024
     ports:
