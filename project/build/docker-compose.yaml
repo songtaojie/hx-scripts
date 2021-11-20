@@ -24,6 +24,14 @@ services:
       - ConsulSettings__AgentCheck__HTTP=http://${LOCAL_SERVICE_IP}:5003/api/HealthCheck
       - SwaggerSettings__EnabledMiniProfiler=false
       - SwaggerSettings__VirtualPath=/badmin
+      - CapRabbitMQSettings__ConnectionString=Server=${DB_SERVER};Port=${DB_PORT};Database=hxcoreblog;Uid=${DB_UID};Pwd=${DB_PWD};CharSet=utf8mb4
+      - CapRabbitMQSettings__Enabled=false
+      - CapRabbitMQSettings__Cap__DefaultGroup=hxCoreGroup
+      - CapRabbitMQSettings__RabbitMQ__HostName=${RABBITMQ_SERVER}
+      - CapRabbitMQSettings__RabbitMQ__Password=${RABBITMQ_PASSWORD}
+      - CapRabbitMQSettings__RabbitMQ__UserName=${RABBITMQ_USERNAME}
+      - CapRabbitMQSettings__RabbitMQ__VirtualHost=${RABBITMQ_VIRTUALHOST}
+      - CapRabbitMQSettings__RabbitMQ__Port=${RABBITMQ_PORT}
     ports:
       - 5003:5003
     dns:
