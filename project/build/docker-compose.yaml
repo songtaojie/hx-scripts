@@ -23,7 +23,7 @@ services:
       - ConsulSettings__AgentService__Port=5003
       - ConsulSettings__AgentCheck__HTTP=http://${LOCAL_SERVICE_IP}:5003/api/HealthCheck
       - SwaggerSettings__EnabledMiniProfiler=false
-      - SwaggerSettings__VirtualPath= ./
+      - SwaggerSettings__VirtualPath= swagger/
     ports:
       - 5003:5003
     dns:
