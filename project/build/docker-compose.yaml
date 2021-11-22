@@ -10,6 +10,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
       - Logging__LogLevel__Default=${DEFAULTLOGLEVEL}
+      - Logging__LogLevel__Microsoft.EntityFrameworkCore.Database.Command=${DEFAULTLOGLEVEL}
       - ConnectionStrings__MySqlConnectionString=Server=${DB_SERVER};Port=${DB_PORT};Database=hxcoreblog;Uid=${DB_UID};Pwd=${DB_PWD};CharSet=utf8mb4
       - ConnectionStrings__IdsConnectionString=Server=${DB_SERVER};Port=${DB_PORT};Database=hxidentityserver;Uid=${DB_UID};Pwd=${DB_PWD};CharSet=utf8mb4
       - RedisSettings__Configuration=${REDIS_SERVER}:${REDIS_PORT},password=${REDIS_PASSWORD},defaultDatabase=${REDIS_DEFAULTDATABASE}
