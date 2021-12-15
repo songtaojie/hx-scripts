@@ -20,7 +20,7 @@ services:
     restart: always
     volumes:
       - ${STORAGE_PATH}/blog-admin:/var/local/blog-admin
-      # - ${STORAGE_PATH}/blog-client:/var/local/blog-client
+      - ${STORAGE_PATH}/blog-client:/var/local/blog-client
     ports:
       - '80:80'
       - '443:443'

@@ -7,12 +7,12 @@ cd ${STORAGE_PATH}/hx-scripts
 git pull
 cd ${STORAGE_PATH}/blog-server
 git pull
-cd ${STORAGE_PATH}/hx-identity-server
-git pull
+# cd ${STORAGE_PATH}/hx-identity-server
+# git pull
 cd ${STORAGE_PATH}/blog-admin
 git pull
-# cd ${STORAGE_PATH}/blog-client
-# git pull
+cd ${STORAGE_PATH}/blog-client
+git pull
 cd $curpwd
 
 # docker login --username=$DOCKER_REGISTRY_USERNAME --password=$DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY
