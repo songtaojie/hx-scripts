@@ -21,6 +21,7 @@ services:
       - CorsAccessorSettings__WithOrigins__0=http://${LOCAL_SERVICE_IP}:8000/
       - CorsAccessorSettings__WithOrigins__1=http://${LOCAL_SERVICE_IP}
       - CorsAccessorSettings__WithOrigins__2=http://${LOCAL_SERVICE_IP}:8000
+      - CorsAccessorSettings__WithOrigins__1=http://${LOCAL_SERVICE_IP}/
       - ConsulSettings__Address=http://${LOCAL_SERVICE_IP}:8500
       - ConsulSettings__AgentService__Address=${LOCAL_SERVICE_IP}
       - ConsulSettings__AgentService__Port=5003
