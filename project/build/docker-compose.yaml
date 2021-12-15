@@ -36,6 +36,7 @@ services:
       - CapRabbitMQSettings__RabbitMQ__UserName=${RABBITMQ_USERNAME}
       - CapRabbitMQSettings__RabbitMQ__VirtualHost=${RABBITMQ_VIRTUALHOST}
       - CapRabbitMQSettings__RabbitMQ__Port=${RABBITMQ_PORT}
+      - AttachSettings__BaseUrl=http://${LOCAL_SERVICE_IP}/web
     ports:
       - 5003:5003
     dns:
