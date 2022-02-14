@@ -3,17 +3,16 @@ source ../.env
 # source ../.env.local
 
 curpwd=$(pwd)
-s="${STORAGE_PATH}/hx-scripts"
-echo "${s}"
-cd ${STORAGE_PATH}/hx-scripts
+cd ${STORAGE_PATH}
+cd hx-scripts
 git pull
-cd ${STORAGE_PATH}/blog-server
+cd ../blog-server
 git pull
 # cd ${STORAGE_PATH}/hx-identity-server
 # git pull
-cd ${STORAGE_PATH}/blog-admin
+cd ../blog-admin
 git pull
-cd ${STORAGE_PATH}/blog-client
+cd ../blog-client
 git pull
 cd $curpwd
 
