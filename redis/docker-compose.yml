@@ -1,0 +1,94 @@
+version: '3.7'
+
+services:
+  redis.6379:
+    container_name: redis-6379
+    build:
+      context: ./6379/
+      dockerfile: Dockerfile
+    # deploy:
+    #   restart_policy:
+    #     condition: on-failure
+    #     delay: 5s
+    #     max_attempts: 3
+    #     window: 120s
+    restart: always
+    sysctls:
+      net.core.somaxconn: 1024
+    ports:
+      - 6379:6379
+    dns:
+      - 8.8.8.8
+      - 114.114.114.114
+
+  # data.redis.9001:
+  #   container_name: data-redis-9001
+  #   build:
+  #     context:  ./9001/
+  #     dockerfile: Dockerfile
+  #   deploy:
+  #     restart_policy:
+  #       condition: on-failure
+  #       delay: 5s
+  #       max_attempts: 3
+  #       window: 120s
+  #   # restart: always
+  #   sysctls:
+  #     net.core.somaxconn: 1024
+  #   ports:
+  #     - 9001:6379
+  #   dns:
+  #     - 8.8.8.8
+  #     - 114.114.114.114
+
+  # data.redis.9002:
+  #   container_name: data-redis-9002
+  #   build:
+  #     context:  ./9002/
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   sysctls:
+  #     net.core.somaxconn: 1024
+  #   ports:
+  #     - 9002:6379
+  #   depends_on:
+  #     - data.redis.9001
+  #   dns:
+  #     - 8.8.8.8
+  #     - 114.114.114.114
+
+  # data.redis.9003:
+  #   container_name: data-redis-9003
+  #   build:
+  #     context:  ./9003/
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   sysctls:
+  #     net.core.somaxconn: 1024
+  #   ports:
+  #     - 9003:6379
+  #   depends_on:
+  #     - data.redis.9001
+  #   dns:
+  #     - 8.8.8.8
+  #     - 114.114.114.114
+
+  # data.redis.sentinel:
+  #   container_name: data-redis-sentinel
+  #   build:
+  #     context:  ./sentinel/
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   sysctls:
+  #     net.core.somaxconn: 1024
+  #   ports:
+  #     - 26379:26379
+  #   depends_on:
+  #     - data.redis.9001
+  #   dns:
+  #     - 8.8.8.8
+  #     - 114.114.114.114
+# networks:
+#   default:
+#     external:
+#       name: redis_default

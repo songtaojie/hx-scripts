@@ -1,17 +1,20 @@
 #!/bin/bash
+source ../.env
+# source ../.env.local
 
 curpwd=$(pwd)
-cd /home/songtaojie/git/blog-server
+cd ${STORAGE_PATH}/hx-scripts
 git pull
-cd /home/songtaojie/git/hx-identity-server
+cd ${STORAGE_PATH}/blog-server
 git pull
-cd /home/songtaojie/git/blog-admin
+# cd ${STORAGE_PATH}/hx-identity-server
+# git pull
+cd ${STORAGE_PATH}/blog-admin
 git pull
-cd /home/songtaojie/git/blog-client
+cd ${STORAGE_PATH}/blog-client
 git pull
 cd $curpwd
 
-source ../.env
 # docker login --username=$DOCKER_REGISTRY_USERNAME --password=$DOCKER_REGISTRY_PASSWORD $DOCKER_REGISTRY
 # docker login --username=$DOCKER_REGISTRY_USERNAME $DOCKER_REGISTRY
 

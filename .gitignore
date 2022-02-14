@@ -5,6 +5,7 @@ node_modules
 # local env files
 .env.local
 .env.*.local
+.local.env
 
 # Log files
 npm-debug.log*
@@ -21,3 +22,4 @@ yarn-error.log*
 *.sw?
 
 package-lock.json
+/project/.env
