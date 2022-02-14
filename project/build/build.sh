@@ -3,7 +3,8 @@ source ../.env
 # source ../.env.local
 
 curpwd=$(pwd)
-echo "${STORAGE_PATH}"
+s=${STORAGE_PATH}/hx-scripts
+echo "${s}"
 cd ${STORAGE_PATH}/hx-scripts
 git pull
 cd ${STORAGE_PATH}/blog-server
