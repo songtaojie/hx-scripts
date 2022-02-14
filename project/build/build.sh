@@ -5,6 +5,7 @@ source ../.env
 curpwd=$(pwd)
 path=${STORAGE_PATH}
 cd ${path}
+ls
 cd hx-scripts
 git pull
 cd ../blog-server
