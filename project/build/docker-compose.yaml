@@ -27,7 +27,7 @@ services:
       - ConsulSettings__AgentService__Port=5003
       - ConsulSettings__AgentCheck__HTTP=http://${LOCAL_SERVICE_IP}:5003/api/HealthCheck
       - SwaggerSettings__EnabledMiniProfiler=false
-      - SwaggerSettings__VirtualPath=/badmin
+      - SwaggerSettings__VirtualPath=${Swagger_VirtualPath}
       - CapRabbitMQSettings__ConnectionString=Server=${DB_SERVER};Port=${DB_PORT};Database=hxcoreblog;Uid=${DB_UID};Pwd=${DB_PWD};CharSet=utf8mb4
       - CapRabbitMQSettings__Enabled=false
       - CapRabbitMQSettings__Cap__DefaultGroup=hxCoreGroup

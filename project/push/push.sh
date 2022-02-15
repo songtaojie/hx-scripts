@@ -9,7 +9,7 @@ declare -A dict=(
 
 declare -A dictversion=(
     ["5002"]="1.0.0"
-    ["5003"]="1.0.0"
+    ["5003"]="5.0.0"
   )
 
 echo -e "\033[33m all services: \033[0m"
