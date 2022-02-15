@@ -68,10 +68,10 @@ function push(){
         then
             echo -e "\033[31m $item --> ${dict[$item]} \033[0m  not exist"
         else
-            docker tag $DOCKER_REGISTRY/${DOCKER_REGISTRY_NAMESPACE}/${dict[$item]}:latest $DOCKER_REGISTRY/${DOCKER_REGISTRY_NAMESPACE}/${dict[$item]}:${dictversion[$item]}
+            docker tag "$DOCKER_REGISTRY/${DOCKER_REGISTRY_NAMESPACE}/${dict[$item]}:latest" "$DOCKER_REGISTRY/${DOCKER_REGISTRY_NAMESPACE}/${dict[$item]}:${dictversion[$item]}"
             
-            docker push $DOCKER_REGISTRY/${DOCKER_REGISTRY_NAMESPACE}/${dict[$item]}:${dictversion[$item]}
-            docker push $DOCKER_REGISTRY/${DOCKER_REGISTRY_NAMESPACE}/${dict[$item]}:latest
+            docker push "$DOCKER_REGISTRY/${DOCKER_REGISTRY_NAMESPACE}/${dict[$item]}:${dictversion[$item]}"
+            docker push "$DOCKER_REGISTRY/${DOCKER_REGISTRY_NAMESPACE}/${dict[$item]}:latest"
         fi
     done
 }
