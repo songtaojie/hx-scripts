@@ -1,0 +1,68 @@
+version: '3.7'
+services:
+  canal-server:
+    container_name: canal-server
+    image: funnyzak/canal-server:1.1.6
+    # image: canal/canal-server:v1.1.7
+    privileged: true
+    ports:
+      - 11110:11110
+      - 11111:11111
+      - 11112:11112
+    # volumes:
+    #   - ../DockerConfig/canal-server/conf/instance.properties:/home/admin/canal-server/conf/example/instance.properties
+    environment:
+      - canal.auto.scan=true
+      - canal.destinations=test
+      - canal.instance.master.address=172.16.40.109:3306
+      - canal.instance.dbUsername=canal
+      - canal.instance.dbPassword=canal
+      - canal.instance.connectionCharset=UTF-8
+    volumes:
+      - ../DockerConfig/canal-server/conf:/opt/canal/canal-server/conf
+      - ../DockerConfig/canal-server/logs:/opt/canal/canal-server/logs
+    # restart: always
+    networks:
+      - my-network
+
+  canal-admin:
+    container_name: canal-admin
+    image: funnyzak/canal-admin:1.1.6
+    # image:  canal/canal-admin:v1.1.7
+    privileged: true
+    ports:
+      - 8089:8089
+    environment:
+      - server.port=8089
+      - canal.adminUser=admin
+      - canal.adminPasswd=admin
+      - spring.datasource.address=172.16.40.109:3306
+      - spring.datasource.database=canal_manager
+      - spring.datasource.username=root
+      - spring.datasource.password=song123
+    volumes:
+      - ../DockerConfig/canal-admin/conf:/opt/canal/canal-admin/conf
+      - ../DockerConfig/canal-admin/logs:/opt/canal/canal-admin/logs
+    networks:
+      - my-network
+    depends_on:
+      - canal-server
+
+  canal-adapter:
+    container_name: canal-adapter
+    image: funnyzak/canal-adapter:1.1.6
+    volumes:
+      - ../DockerConfig/canal-adapter/conf:/opt/canal/canal-adapter/conf
+      - ../DockerConfig/canal-adapter/logs:/opt/canal/canal-adapter/logs
+      # - type: bind
+      #   source: ../DockerConfig/canal-adapter/es6/mytest_user.yml
+      #   target: /opt/canal/conf/es6/mytest_user.yml
+      #   read_only: true
+    networks:
+      - my-network
+    depends_on:
+      - canal-server
+networks:
+  my-network:
+    external: true
+

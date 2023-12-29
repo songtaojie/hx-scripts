@@ -8,13 +8,13 @@ services:
       context: ../DockerConfig/elasticsearch/
       args:
         ELK_VERSION: $ELK_VERSION
-    deploy:
-      restart_policy:
-        condition: on-failure
-        #delay: 5s
-        max_attempts: 3
-        #window: 120s
-    #restart: always
+    # deploy:
+    #   restart_policy:
+    #     condition: on-failure
+    #     #delay: 5s
+    #     max_attempts: 3
+    #     #window: 120s
+    restart: always
     volumes:
       - type: bind
         source: ../DockerConfig/elasticsearch/config/elasticsearch.yml
@@ -44,13 +44,13 @@ services:
       context: ../DockerConfig/logstash/
       args:
         ELK_VERSION: $ELK_VERSION
-    deploy:
-    restart_policy:
-      condition: on-failure
-      #delay: 5s
-      max_attempts: 3
-      #window: 120s
-    #restart: always
+    # deploy:
+    # restart_policy:
+    #   condition: on-failure
+    #   #delay: 5s
+    #   max_attempts: 3
+    #   #window: 120s
+    restart: always
     volumes:
       - type: bind
         source: ../DockerConfig/logstash/config/logstash.yml
@@ -78,13 +78,13 @@ services:
       context: ../DockerConfig/kibana/
       args:
         ELK_VERSION: $ELK_VERSION
-    deploy:
-    restart_policy:
-      condition: on-failure
-      #delay: 5s
-      max_attempts: 3
-      #window: 120s
-    #restart: always
+    # deploy:
+    # restart_policy:
+    #   condition: on-failure
+    #   #delay: 5s
+    #   max_attempts: 3
+    #   #window: 120s
+    restart: always
     volumes:
       - type: bind
         source: ../DockerConfig/kibana/config/kibana.yml

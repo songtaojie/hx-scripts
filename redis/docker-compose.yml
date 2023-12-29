@@ -21,41 +21,41 @@ services:
       - 8.8.8.8
       - 114.114.114.114
 
-  # data.redis.9001:
-  #   container_name: data-redis-9001
-  #   build:
-  #     context:  ./9001/
-  #     dockerfile: Dockerfile
-  #   deploy:
-  #     restart_policy:
-  #       condition: on-failure
-  #       delay: 5s
-  #       max_attempts: 3
-  #       window: 120s
-  #   # restart: always
-  #   sysctls:
-  #     net.core.somaxconn: 1024
-  #   ports:
-  #     - 9001:6379
-  #   dns:
-  #     - 8.8.8.8
-  #     - 114.114.114.114
+  data.redis.9001:
+    container_name: data-redis-9001
+    build:
+      context:  ./9001/
+      dockerfile: Dockerfile
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    # restart: always
+    sysctls:
+      net.core.somaxconn: 1024
+    ports:
+      - 9001:6379
+    dns:
+      - 8.8.8.8
+      - 114.114.114.114
 
-  # data.redis.9002:
-  #   container_name: data-redis-9002
-  #   build:
-  #     context:  ./9002/
-  #     dockerfile: Dockerfile
-  #   restart: always
-  #   sysctls:
-  #     net.core.somaxconn: 1024
-  #   ports:
-  #     - 9002:6379
-  #   depends_on:
-  #     - data.redis.9001
-  #   dns:
-  #     - 8.8.8.8
-  #     - 114.114.114.114
+  data.redis.9002:
+    container_name: data-redis-9002
+    build:
+      context:  ./9002/
+      dockerfile: Dockerfile
+    restart: always
+    sysctls:
+      net.core.somaxconn: 1024
+    ports:
+      - 9002:6379
+    depends_on:
+      - data.redis.9001
+    dns:
+      - 8.8.8.8
+      - 114.114.114.114
 
   # data.redis.9003:
   #   container_name: data-redis-9003
